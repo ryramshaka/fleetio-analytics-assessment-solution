@@ -1,0 +1,30 @@
+version: 2
+
+seeds:
+  - name: raw_fleetio_accounts
+    description: "Raw account data representing companies in the Fleetio ecosystem."
+    columns:
+      - name: id
+        tests: [unique, not_null]
+      - name: primary_contact_id
+        description: "FK to the contacts table for the main point of contact."
+
+  - name: raw_fleetio_contacts
+    description: "Raw contact records for individuals associated with accounts or leads."
+    columns:
+      - name: id
+        tests: [unique, not_null]
+      - name: account_id
+        tests: [not_null]
+
+  - name: raw_fleetio_leads
+    description: "Raw lead records capturing potential customers before conversion."
+    columns:
+      - name: id
+        tests: [unique, not_null]
+
+  - name: raw_fleetio_opportunities
+    description: "Raw opportunity data tracking the sales pipeline."
+    columns:
+      - name: id
+        tests: [unique, not_null]
