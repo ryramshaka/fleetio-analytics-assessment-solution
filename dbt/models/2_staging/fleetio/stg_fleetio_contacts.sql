@@ -4,19 +4,19 @@ with source as (
 
 select
     -- Primary key
-    cast(id as varchar) as contact_id
+    {{ clean_col('id', 'id', name_override='contact_id') }}
     
     -- Foreign keys
-    , cast(account_id as varchar) as account_id
-    , cast(lead_id as varchar) as lead_id
+    , {{ clean_col('account_id', 'id', prefix='contact')}}
+    , {{ clean_col('lead_id', 'id', prefix='contact')}}
     
     -- Personal Info
-    , cast(first_name as varchar) as first_name
-    , cast(last_name as varchar) as last_name
-    , cast(job_title as varchar) as job_title
-    , cast(email as varchar) as contact_email
+    , {{ clean_col('first_name', 'cd', prefix='contact')}}
+    , {{ clean_col('last_name', 'cd', prefix='contact')}}
+    , {{ clean_col('job_title', 'cd', prefix='contact')}}
+    , {{ clean_col('email', 'cd', prefix='contact')}}
     
     -- Timestamps
-    , cast(created_at as timestamp) as created_at_ts
+    , {{ clean_col('created_at', 'ts', prefix='contact')}}
 
 from source

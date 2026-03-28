@@ -25,3 +25,32 @@ models:
           - not_null
       - name: created_at_ts
         description: "The timestamp when this contact record was created."
+
+  - name: stg_fleetio_leads
+    description: "Cleaned and prefixed lead records from Fleetio. All columns are prefixed with 'lead_' to avoid collisions in downstream joins."
+    columns:
+      - name: lead_id
+        description: "Primary key for the lead (UUID)."
+        tests:
+          - unique
+          - not_null
+
+      - name: lead_first_name
+      - name: lead_last_name
+      - name: lead_job_title
+      - name: lead_email
+        tests:
+          - not_null
+      - name: lead_company_name
+
+      - name: lead_created_at_ts
+        description: "Timestamp when the lead record was first created."
+      - name: lead_converted_at_ts
+        description: "Timestamp when the lead was converted to an account/contact. Null if not yet converted."
+
+      - name: lead_source_cd
+      - name: lead_country_cd
+      - name: lead_city_cd
+      - name: lead_state_cd
+      - name: lead_industry_cd
+      - name: lead_fleet_size_bracket_cd
