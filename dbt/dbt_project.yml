@@ -1,23 +1,32 @@
-name: fleetio_analytics
+name: 'fleetio_analytics'
+version: '1.0.0'
+profile: 'fleetio_profile'
 
-profile: fleetio_profile
-
-seed-paths: ["seeds"]
 model-paths: ["models"]
+seed-paths: ["seeds"]
 macro-paths: ["macros"]
+test-paths: ["tests"]
+
 clean-targets:
   - "target"
   - "dbt_packages"
 
 seeds:
-  # Builds seeds into '<your_schema_name>_raw'
-  jaffle_shop:
-    +schema: raw
+  fleetio_analytics:
+    +schema: raw        # Seeds go to main_raw, replacement for 1_raw
+    +quote_columns: false
 
 models:
-  jaffle_shop:
-    # Materialize staging models as views, and marts as tables
-    staging:
+  fleetio_analytics:
+    2_staging:
+      +schema: staging
       +materialized: view
-    marts:
+    3_base:
+      +schema: base
+      +materialized: table
+    4_intermediate:
+      +schema: intermediate
+      +materialized: ephemeral
+    5_mart:
+      +schema: mart
       +materialized: table
