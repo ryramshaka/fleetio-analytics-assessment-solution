@@ -23,5 +23,5 @@ select
     , {{ clean_col('city', 'cd', prefix='lead')}}
     , {{ clean_col('state', 'cd', prefix='lead')}}
     , {{ clean_col('industry', 'cd', prefix='lead')}}
-    , {{ clean_col('fleet_size_bracket', 'cd', prefix='lead')}}
+    , {{ clean_col('fleet_size', 'cd', prefix='lead')}}
 from source
