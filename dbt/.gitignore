@@ -4,3 +4,4 @@ logs/
 target/
 .vscode/
 .user.yml
+dbt_cloud.yml
