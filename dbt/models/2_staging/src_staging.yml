@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_fleetio_contacts
+    description: "Cleaned and casted contact records from Fleetio."
+    columns:
+      - name: contact_id
+        description: "The unique identifier for the contact (UUID)."
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: "Foreign key to the accounts table."
+      - name: lead_id
+        description: "Foreign key to the leads table (null if the contact did not originate as a lead)."
+      - name: first_name
+        description: "Contact's first name."
+      - name: last_name
+        description: "Contact's last name."
+      - name: job_title
+        description: "Professional title as recorded in Fleetio."
+      - name: contact_email
+        description: "The primary email address for this contact."
+        tests:
+          - not_null
+      - name: created_at_ts
+        description: "The timestamp when this contact record was created."
