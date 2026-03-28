@@ -54,3 +54,25 @@ models:
       - name: lead_state_cd
       - name: lead_industry_cd
       - name: lead_fleet_size_bracket_cd
+
+  - name: stg_fleetio_opportunities
+    description: "Cleaned opportunity records. Tracks the sales pipeline, including win/loss status and geography."
+    columns:
+      - name: opportunity_id
+        description: "Primary key for the opportunity (UUID)."
+        tests:
+          - unique
+          - not_null
+      - name: opportunity_account_id
+        description: "Foreign key to the associated account."
+      - name: opportunity_created_at_ts
+        description: "The date and time the opportunity was opened."
+      - name: opportunity_closed_at_ts
+        description: "The date and time the opportunity reached a terminal state (Won/Lost)."
+      - name: is_closed_flag
+        description: "Boolean indicating if the opportunity is no longer active."
+      - name: is_won_flag
+        description: "Boolean indicating if the opportunity resulted in a successful sale."
+      - name: opportunity_country_cd
+      - name: opportunity_state_cd
+      - name: opportunity_city_cd
