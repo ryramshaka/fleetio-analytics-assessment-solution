@@ -1,6 +1,19 @@
 version: 2
 
 models:
+  - name: stg_fleetio_accounts
+    description: "Cleaned account records with standardized 'account_' prefixing."
+    columns:
+      - name: account_id
+        tests: [unique, not_null]
+      - name: account_company_cd
+      - name: account_primary_contact_id
+      - name: account_country_cd
+      - name: account_state_cd
+      - name: account_city_cd
+      - name: account_industry_cd
+      - name: account_fleet_size_cd
+
   - name: stg_fleetio_contacts
     description: "Cleaned and casted contact records from Fleetio."
     columns:
@@ -9,21 +22,21 @@ models:
         tests:
           - unique
           - not_null
-      - name: account_id
+      - name: contact_account_id
         description: "Foreign key to the accounts table."
-      - name: lead_id
+      - name: contact_lead_id
         description: "Foreign key to the leads table (null if the contact did not originate as a lead)."
-      - name: first_name
+      - name: contact_first_name_cd
         description: "Contact's first name."
-      - name: last_name
+      - name: contact_last_name_cd
         description: "Contact's last name."
-      - name: job_title
+      - name: contact_job_title_cd
         description: "Professional title as recorded in Fleetio."
-      - name: contact_email
+      - name: contact_contact_email_cd
         description: "The primary email address for this contact."
         tests:
           - not_null
-      - name: created_at_ts
+      - name: contact_created_at_ts
         description: "The timestamp when this contact record was created."
 
   - name: stg_fleetio_leads
@@ -35,13 +48,13 @@ models:
           - unique
           - not_null
 
-      - name: lead_first_name
-      - name: lead_last_name
-      - name: lead_job_title
-      - name: lead_email
+      - name: lead_first_name_cd
+      - name: lead_last_name_cd
+      - name: lead_job_title_cd
+      - name: lead_email_cd
         tests:
           - not_null
-      - name: lead_company_name
+      - name: lead_company_name_cd
 
       - name: lead_created_at_ts
         description: "Timestamp when the lead record was first created."
