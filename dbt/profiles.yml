@@ -1,0 +1,6 @@
+fleetio_profile:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: 'fleetio.duckdb'
