@@ -1,0 +1,6 @@
+version: 2
+
+models:
+
+  - name: int_dates_leads
+    description: "Daily lead conversion totals by source. Dates only for between first and last lead conversion date by source."
