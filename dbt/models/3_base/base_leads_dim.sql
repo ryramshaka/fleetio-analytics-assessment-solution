@@ -1,5 +1,9 @@
 select leads.lead_id
+
+    -- Creation
     , leads.lead_created_at_ts
+    , cast(leads.lead_created_at_ts as date)        as lead_created_at_dt
+    , 1                                             as lead_creation_num
 
     -- Conversion
     , leads.lead_converted_at_ts

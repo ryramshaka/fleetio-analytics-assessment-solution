@@ -2,5 +2,5 @@ version: 2
 
 models:
 
-  - name: marts_leads_dates
+  - name: mart_leads_conversion
     description: "Simulates BI tool use for `How many leads were converted by different time grains (day, week, and month)?`"
