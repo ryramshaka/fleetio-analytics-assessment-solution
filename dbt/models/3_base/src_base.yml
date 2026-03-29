@@ -1,28 +1,6 @@
 version: 2
 
 models:
-  - name: base_leads_dim
-    description: "Base layer for leads. Contains raw marketing funnel entry points with 'lead_' prefixing."
-    columns:
-      - name: lead_id
-        tests: [unique, not_null]
-      - name: lead_first_name_cd
-      - name: lead_last_name_cd
-      - name: lead_email_cd
-      - name: lead_created_at_ts
-      - name: lead_converted_at_ts
-      - name: lead_source_cd
-      - name: lead_industry_cd
-      - name: lead_fleet_size_cd
-
-  - name: base_leads_opps_fct
-    description: "Base reference map from leads to opportunities conversions. Opportunities are unique by account not by lead (which is unique by contact)."
-    columns:
-      - name: lead_id
-        tests: [unique, not_null]
-      - name: contact_id
-      - name: account_id
-      - name: opp_id
 
   - name: base_accounts_dim
     description: "Base layer for accounts. Represents converted companies."
@@ -46,6 +24,45 @@ models:
       - name: contact_last_name_cd
       - name: contact_email_cd
       - name: contact_created_at_ts
+
+  - name: base_dates_dim
+    description: "Base layer for date information from 2020 through 2027"
+    columns:
+      - name: date_id
+      - name: date_day_of_month_num
+      - name: date_month_num
+      - name: date_year_num
+      - name: date_day_dt
+      - name: date_week_dt
+      - name: date_month_dt
+      - name: date_year_dt
+      - name: date_day_name_cd
+      - name: date_day_month_name_cd
+      - name: date_quarter_name_cd
+      - name: date_is_weekend_flag
+
+  - name: base_leads_dim
+    description: "Base layer for leads. Contains raw marketing funnel entry points with 'lead_' prefixing."
+    columns:
+      - name: lead_id
+        tests: [unique, not_null]
+      - name: lead_first_name_cd
+      - name: lead_last_name_cd
+      - name: lead_email_cd
+      - name: lead_created_at_ts
+      - name: lead_converted_at_ts
+      - name: lead_source_cd
+      - name: lead_industry_cd
+      - name: lead_fleet_size_cd
+
+  - name: base_leads_opps_fct
+    description: "Base reference map from leads to opportunities conversions. Opportunities are unique by account not by lead (which is unique by contact)."
+    columns:
+      - name: lead_id
+        tests: [unique, not_null]
+      - name: contact_id
+      - name: account_id
+      - name: opp_id
 
   - name: base_opps_dim
     description: "Base layer for opportunities. Tracks the sales pipeline and win/loss status."
