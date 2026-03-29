@@ -14,8 +14,8 @@ select
     , {{ clean_col('closed_at', 'ts', prefix='opportunity') }}
 
     -- Booleans (Flags)
-    , {{ clean_col('is_closed', 'flag') }}
-    , {{ clean_col('is_won', 'flag') }}
+    , {{ clean_col('is_closed', 'flag', prefix='opportunity') }}
+    , {{ clean_col('is_won', 'flag', prefix='opportunity') }}
 
     -- Attributes
     , {{ clean_col('country', 'cd', prefix='opportunity') }}
