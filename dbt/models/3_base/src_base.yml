@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: base_leads
+  - name: base_leads_dim
     description: "Base layer for leads. Contains raw marketing funnel entry points with 'lead_' prefixing."
     columns:
       - name: lead_id
@@ -15,7 +15,16 @@ models:
       - name: lead_industry_cd
       - name: lead_fleet_size_cd
 
-  - name: base_accounts
+  - name: base_leads_opps_fct
+    description: "Base reference map from leads to opportunities conversions. Opportunities are unique by account not by lead (which is unique by contact)."
+    columns:
+      - name: lead_id
+        tests: [unique, not_null]
+      - name: contact_id
+      - name: account_id
+      - name: opp_id
+
+  - name: base_accounts_dim
     description: "Base layer for accounts. Represents converted companies."
     columns:
       - name: account_id
@@ -26,7 +35,7 @@ models:
       - name: account_fleet_size_cd
       - name: account_country_cd
 
-  - name: base_contacts
+  - name: base_contacts_dim
     description: "Base layer for contacts. Represents individuals associated with an account and a lead."
     columns:
       - name: contact_id
@@ -38,14 +47,14 @@ models:
       - name: contact_email_cd
       - name: contact_created_at_ts
 
-  - name: base_opportunities
+  - name: base_opps_dim
     description: "Base layer for opportunities. Tracks the sales pipeline and win/loss status."
     columns:
-      - name: opportunity_id
+      - name: opp_id
         tests: [unique, not_null]
-      - name: opportunity_account_id
-      - name: opportunity_created_at_ts
-      - name: opportunity_closed_at_ts
-      - name: opportunity_is_closed_flag
-      - name: opportunity_is_won_flag
-      - name: opportunity_country_cd
+      - name: opp_account_id
+      - name: opp_created_at_ts
+      - name: opp_closed_at_ts
+      - name: opp_is_closed_flag
+      - name: opp_is_won_flag
+      - name: opp_country_cd
