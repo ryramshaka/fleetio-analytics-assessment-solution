@@ -1,17 +1,25 @@
 {% macro clean_col(column_name, type_suffix, name_override=none, prefix=none) -%}
 
-    {# Determine the final alias -#}
+    {# 1. Determine the Base Alias Name #}
     {%- if name_override -%}
         {%- set alias = name_override -%}
-    {%- elif prefix -%}
-        {%- set alias = prefix ~ '_' ~ column_name -%}
-    {%- elif column_name.endswith('_' ~ type_suffix) or column_name.endswith(type_suffix) -%}
-        {%- set alias = column_name -%}
     {%- else -%}
-        {%- set alias = column_name ~ '_' ~ type_suffix -%}
+        {# Start with the prefix if it exists #}
+        {%- set base_name = column_name -%}
+        {%- if prefix -%}
+            {%- set clean_prefix = prefix if prefix.endswith('_') else prefix ~ '_' -%}
+            {%- set base_name = clean_prefix ~ column_name -%}
+        {%- endif -%}
+
+        {# Append the suffix if it isn't already there #}
+        {%- if base_name.endswith('_' ~ type_suffix) or base_name.endswith(type_suffix) -%}
+            {%- set alias = base_name -%}
+        {%- else -%}
+            {%- set alias = base_name ~ '_' ~ type_suffix -%}
+        {%- endif -%}
     {%- endif -%}
 
-    {# Apply the CAST logic -#}
+    {# 2. Apply the CAST logic using the calculated alias #}
     {%- if type_suffix == 'ts' -%}
         cast({{ column_name }} as timestamp) as {{ alias }}
     {%- elif type_suffix == 'dt' -%}

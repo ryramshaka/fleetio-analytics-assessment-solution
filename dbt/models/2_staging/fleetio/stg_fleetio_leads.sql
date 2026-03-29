@@ -14,8 +14,8 @@ select
     , {{ clean_col('company', 'cd', prefix='lead')}}
     
     -- Timestamps
-    , {{ clean_col('created_at', 'ts', 'lead')}}
-    , {{ clean_col('converted_at', 'ts', 'lead')}}
+    , {{ clean_col('created_at', 'ts', prefix='lead')}}
+    , {{ clean_col('converted_at', 'ts', prefix='lead')}}
     
     -- Attributes & Categorization
     , {{ clean_col('source', 'cd', prefix='lead')}}

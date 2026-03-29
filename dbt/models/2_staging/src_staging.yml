@@ -32,7 +32,7 @@ models:
         description: "Contact's last name."
       - name: contact_job_title_cd
         description: "Professional title as recorded in Fleetio."
-      - name: contact_contact_email_cd
+      - name: contact_email_cd
         description: "The primary email address for this contact."
         tests:
           - not_null
