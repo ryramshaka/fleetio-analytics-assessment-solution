@@ -1,0 +1,26 @@
+version: 2
+
+models:
+
+  - name: int_leads_conversion
+    description: "Lead conversion information by the date of the lead creation and attributes."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - date_day_dt
+              - lead_source_cd
+              - lead_state_cd
+              - lead_industry_cd
+              - lead_fleet_size_cd
+  - name: int_opps_conversion
+    description: "Opportunity conversion information by teh date of the opportunity creation and attributes."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - date_day_dt
+              - opp_state_cd
+              - first_lead_source_cd
+              - account_industry_cd
+              - account_fleet_size_cd

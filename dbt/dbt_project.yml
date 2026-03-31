@@ -26,7 +26,7 @@ models:
       +materialized: table
     4_intermediate:
       +schema: intermediate
-      +materialized: ephemeral
+      +materialized: view
     5_mart:
       +schema: mart
       +materialized: table
