@@ -18,7 +18,6 @@ with day_leads as (
     select min(lead_created_at_dt)  as first_lead_created_dt
         , max(lead_created_at_dt)  as last_lead_created_dt
     from day_leads
-    group by lead_source_cd
 )
 
 select dates.date_day_dt
@@ -42,9 +41,3 @@ full outer join {{ ref('base_dates_dim') }} dates
 inner join day_bounds db
     on db.first_lead_created_dt <= dates.date_day_dt
     and db.last_lead_created_dt >= dates.date_day_dt
-
-order by dates.date_day_dt
-    , dl.lead_source_cd
-    , dl.lead_state_cd
-    , dl.lead_industry_cd
-    , dl.lead_fleet_size_cd

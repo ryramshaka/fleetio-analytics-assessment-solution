@@ -10,3 +10,5 @@ left join {{ ref('base_accounts_dim')}} accounts
 left join {{ ref('base_opps_dim')}} opps
     on accounts.account_id = opps.opp_account_id
     and leads.lead_converted_at_ts = opps.opp_created_at_ts -- Opp created as lead converted
+    and leads.lead_created_at_ts <= opps.opp_closed_at_ts -- Safety guard, redudant
+where leads.lead_conversion_flag = true

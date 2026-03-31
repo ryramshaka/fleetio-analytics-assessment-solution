@@ -46,16 +46,26 @@ models:
     columns:
       - name: lead_id
         tests: [unique, not_null]
+      - name: lead_created_at_ts
+      - name: lead_created_at_dt
+      - name: lead_creation_num
+      - name: lead_converted_at_ts
+      - name: lead_converted_at_dt
+      - name: lead_conversion_num
+      - name: lead_conversion_flag
       - name: lead_first_name_cd
       - name: lead_last_name_cd
+      - name: lead_job_title_cd
       - name: lead_email_cd
-      - name: lead_created_at_ts
-      - name: lead_converted_at_ts
+      - name: lead_company_cd
       - name: lead_source_cd
+      - name: lead_country_cd
+      - name: lead_state_cd
+      - name: lead_city_cd
       - name: lead_industry_cd
       - name: lead_fleet_size_cd
 
-  - name: base_leads_opps_fct
+  - name: base_leads_opp_fct
     description: "Base reference map from leads to opportunities conversions. Opportunities are unique by account not by lead (which is unique by contact)."
     columns:
       - name: lead_id
@@ -71,7 +81,32 @@ models:
         tests: [unique, not_null]
       - name: opp_account_id
       - name: opp_created_at_ts
+      - name: opp_created_at_dt
+      - name: opp_creation_num
       - name: opp_closed_at_ts
+      - name: opp_closed_at_dt
+      - name: opp_closed_num
       - name: opp_is_closed_flag
       - name: opp_is_won_flag
+      - name: opp_won_num
+      - name: opp_lost_num
       - name: opp_country_cd
+      - name: opp_state_cd
+      - name: opp_city_cd
+
+  - name: base_opps_account_fct
+    columns:
+      - name: opp_id
+        tests: [unique, not_null]
+      - name: account_id
+      - name: account_industry_cd
+      - name: account_fleet_size_cd
+
+  - name: base_opps_lead_fct
+    columns:
+      - name: opp_id
+        tests: [unique, not_null]
+      - name: first_lead_id_by_lead_creation
+      - name: first_lead_source_cd
+      - name: last_lead_id_by_lead_creation
+      - name: last_lead_source_cd

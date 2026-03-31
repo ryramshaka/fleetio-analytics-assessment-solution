@@ -11,6 +11,9 @@ select leads.lead_id
     , case
         when leads.lead_converted_at_ts is not null then 1
         else 0 end                                  as lead_conversion_num
+    , case
+        when leads.lead_converted_at_ts is not null then true
+        else false end                              as lead_conversion_flag
 
     -- Attributes
     , leads.lead_first_name_cd
