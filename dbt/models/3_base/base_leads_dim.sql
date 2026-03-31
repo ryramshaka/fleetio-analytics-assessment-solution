@@ -20,6 +20,7 @@ select leads.lead_id
     , leads.lead_company_cd
     , leads.lead_source_cd
     , leads.lead_country_cd
+    , leads.lead_state_cd
     , leads.lead_city_cd
     , leads.lead_industry_cd
     , leads.lead_fleet_size_cd

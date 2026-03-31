@@ -2,5 +2,7 @@ version: 2
 
 models:
 
-  - name: int_leads_source_conversion
-    description: "Lead conversion information by the date of the lead creation and source."
+  - name: int_leads_conversion
+    description: "Lead conversion information by the date of the lead creation and attributes."
+  - name: int_opps_conversion
+    description: "Opportunity conversion information by teh date of the opportunity creation and attributes."
