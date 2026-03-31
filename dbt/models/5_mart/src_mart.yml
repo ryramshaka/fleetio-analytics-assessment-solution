@@ -2,5 +2,7 @@ version: 2
 
 models:
 
+  - name: mart_leads_attribution
+    description: "Simulates BI tool use for `Which lead sources generated the most converted leads at different time grains (day, week, and month)?`"
   - name: mart_leads_conversion
     description: "Simulates BI tool use for `How many leads were converted by different time grains (day, week, and month)?`"
